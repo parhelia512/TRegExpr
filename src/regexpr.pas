@@ -952,7 +952,7 @@ uses
 const
   // TRegExpr.VersionMajor/Minor return values of these constants:
   REVersionMajor = 1;
-  REVersionMinor = 190;
+  REVersionMinor = 191;
 
   OpKind_End = REChar(1);
   OpKind_MetaClass = REChar(2);
@@ -971,7 +971,11 @@ const
   RegExprLineSeparatorsSet = [$d, $a, $b, $c] {$IFDEF UnicodeRE} + [$85] {$ENDIF};
   RegExprHorzSeparatorsSet = [9, $20, $A0];
 
+{$ifdef CPU16}
+  MaxBracesArg = $7FFF - 1;
+{$else}
   MaxBracesArg = $7FFFFFFF - 1; // max value for {n,m} arguments
+{$endif}
 
 type
   TRENextOff = PtrInt;
