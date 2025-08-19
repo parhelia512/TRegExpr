@@ -6,6 +6,9 @@
                                      (-) - bugfix
                                      (^) - improvement
 
+ v. 1.193 2025.08.19
+ -=- (-) Fix finding "Greek lowercase final sigma" char with case-insens. By Alexey Torgashin.
+
  v. 1.190 2025.03.07
  -=- (^) Change behaviour of GetSubExprMatchCount, it now returns only count of matched groups.
   W/o this change, compatability was broken since v0.952. By @horst-p-w-neubauer.
