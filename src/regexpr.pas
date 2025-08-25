@@ -952,7 +952,7 @@ uses
 const
   // TRegExpr.VersionMajor/Minor return values of these constants:
   REVersionMajor = 1;
-  REVersionMinor = 193;
+  REVersionMinor = 194;
 
   OpKind_End = REChar(1);
   OpKind_MetaClass = REChar(2);
@@ -5040,7 +5040,6 @@ var
   scan: PRegExprChar;
   opnd: PRegExprChar;
   TheMax: PtrInt; // PtrInt, gets diff of 2 pointers
-  InvChar: REChar;
   {$IFDEF UnicodeEx}
   i: Integer;
   {$ENDIF}
@@ -5098,18 +5097,14 @@ begin
         }
         Inc(opnd, RENumberSz);
         while (Result < TheMax) and (opnd^ = scan^) do
-        begin // prevent unneeded InvertCase
+        begin // prevent unneeded _UpperCase
           Inc(Result);
           Inc(scan);
         end;
-        if Result < TheMax then
+        while (Result < TheMax) and (opnd^ = _UpperCase(scan^)) do
         begin
-          InvChar := _LowerCase(opnd^); // store in register
-          while (Result < TheMax) and ((opnd^ = scan^) or (InvChar = scan^)) do
-          begin
-            Inc(Result);
-            Inc(scan);
-          end;
+          Inc(Result);
+          Inc(scan);
         end;
       end;
 
